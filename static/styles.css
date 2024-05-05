@@ -1,0 +1,96 @@
+/* Estilos para el contenedor de cursos */
+.courses-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Estilos para cada curso */
+.course {
+    width: 250px; /* Ajusta el ancho del curso */
+    height: 250px; /* Ajusta la altura del curso */
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    position: relative; /* Establece la posición relativa para el contenedor de curso */
+}
+
+/* Estilos para la imagen del curso */
+.course-image {
+    height: 100%; /* Ocupa toda la altura del contenedor */
+    width: 100%; /* Ocupa toda la anchura del contenedor */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Estilos para los detalles del curso (nombre) */
+.course-name {
+    position: absolute; /* Posiciona el nombre absolutamente */
+    top: 50%; /* Ajusta la posición vertical del nombre al centro */
+    left: 50%; /* Ajusta la posición horizontal del nombre al centro */
+    transform: translate(-50%, -50%); /* Centra el nombre */
+    font-size: 30px;
+    color: #ffffff; /* Cambia el color del texto a blanco */
+    opacity: 0; /* Inicialmente oculta el nombre */
+    transition: opacity 0.3s ease; /* Agrega transición */
+}
+
+/* Mostrar nombre del curso al pasar el mouse */
+.course:hover .course-name {
+    opacity: 1;
+}
+
+/* Mostrar detalles del curso al pasar el mouse */
+.course:hover {
+    transform: translateY(-5px);
+}
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Para evitar el desplazamiento de la página */
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('path_to_your_background_image.jpg'); /* Reemplaza con la URL de tu imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    z-index: -1; /* Coloca el fondo detrás de todo */
+    filter: blur(10px); /* Aplica un desenfoque al fondo */
+}
+
+.courses-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    padding: 20px;
+    margin: auto;
+    z-index: 1; /* Asegura que los cursos estén sobre el fondo */
+    position: relative; /* Establece el contexto de apilamiento para los cursos */
+}
+
+/* Estilos adicionales para los cursos... */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9; /* Color de fondo de respaldo */
+}
+
+img {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Escalar la imagen para cubrir toda la pantalla */
+    z-index: -1; /* Colocar la imagen detrás del contenido */
+}

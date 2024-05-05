@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ course_name.capitalize() }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right top, #07162f, #1c354d);
+            font-family: 'Roboto', sans-serif;
+            color: #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 70%;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .form-container {
+            width: 25%;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #f0f0f0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            font-size: 18px;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        li:hover {
+            transform: translateY(-5px);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            border-radius: 20px;
+            background-color: #f48c06;
+            text-align: center;
+            line-height: 20px;
+            color: #fff;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #f0f0f0;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f48c06;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="text"],
+        input[type="date"] {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #f0f0f0;
+            border: 1px solid transparent;
+        }
+
+        button[type="submit"] {
+            background-color: #2e86de;
+        }
+
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        button[type="submit"]:focus {
+            outline: none;
+            background-color: #1e3799;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ course_name.capitalize() }}</h1>
+        <h2>Entregables</h2>
+        <ul>
+            {% for deliverable in course['deliverables'] %}
+                <li>
+                    {{ deliverable.name }} - Fecha de entrega: {{ deliverable.deadline }}
+                    <div class="progress-bar">
+                        <div class="progress" style="width: {{ deliverable.progress }}%;">{{ deliverable.progress }}%</div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="form-container">
+        <h3>Agregar Entregable</h3>
+        <form action="" method="post">
+            <label for="deliverable_name">Nombre del Entregable:</label>
+            <input type="text" id="deliverable_name" name="deliverable_name" required>
+            <label for="deadline_date">Fecha de Entrega:</label>
+            <input type="date" id="deadline_date" name="deadline_date" required>
+            <button type="submit">Agregar Entregable</button>
+        </form>
+    </div>
+</body>
+</html>
+
+
+

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #2d3436, #636e72); /* Degradado futurista */
+            font-family: Arial, sans-serif; /* Cambiar la fuente */
+            color: #fff; /* Color de texto blanco */
+            margin: 0; /* Eliminar márgenes */
+            padding: 0; /* Eliminar relleno */
+            display: flex; /* Establecer el contenedor principal como flexbox */
+            justify-content: center; /* Centrar horizontalmente */
+            align-items: center; /* Centrar verticalmente */
+            height: 100vh; /* Altura del viewport */
+        }
+
+        .courses-container {
+            display: grid; /* Utilizar grid para los cursos */
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Distribuir cursos en columnas */
+            gap: 20px; /* Espacio entre los cursos */
+            max-width: 1200px; /* Ancho máximo del contenedor */
+            padding: 20px; /* Añadir relleno */
+            margin: auto; /* Centrar */
+        }
+
+        .course {
+            background-color: #2c3e50; /* Color de fondo del curso */
+            border-radius: 10px; /* Borde redondeado */
+            overflow: hidden; /* Ocultar contenido que se desborde */
+            position: relative; /* Posición relativa para el desplazamiento */
+            transition: transform 0.3s ease; /* Transición suave para el desplazamiento */
+        }
+
+        .course:hover {
+            transform: scale(1.1); /* Escalar al 110% al pasar el mouse */
+        }
+
+        .course-image {
+            width: 100%; /* Ancho completo */
+            height: 100%; /* Altura completa */
+            background-size: cover; /* Escalar imagen para cubrir */
+            background-position: center; /* Posicionar en el centro */
+            transition: transform 0.3s ease; /* Transición suave para el desplazamiento */
+        }
+
+        .course:hover .course-image {
+            transform: scale(1.1); /* Escalar al 110% al pasar el mouse */
+        }
+
+        .course-details {
+            padding: 10px; /* Añadir relleno */
+        }
+
+        .course-name {
+            font-size: 18px; /* Tamaño de fuente */
+            font-weight: bold; /* Negrita */
+        }
+
+        .course-link {
+            text-decoration: none; /* Quitar subrayado del enlace */
+            color: inherit; /* Heredar color del texto */
+        }
+    </style>
+</head>
+<body>
+    <img src="static/ai-generated-7801845_1920.jpg" alt="Fondo de pantalla">
+    <div class="container">
+    <h1 style="text-align: center;">Cursos</h1>
+    <div class="courses-container">
+        {% for course_key, course in courses.items() %}
+        <div class="course">
+            <a href="{{ url_for('course', course_name=course_key) }}" class="course-link">
+                <div class="course-image" style="background-image: url('{{ url_for('static', filename=course['image']) }}');"></div>
+                <div class="course-details">
+                    <span class="course-name">{{ course['name'] }}</span>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+
